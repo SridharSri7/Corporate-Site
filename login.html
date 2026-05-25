@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<!-- NavBar -->
+
+<header class="navbar">
+  <div class="logo">NovaCorp</div>
+
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <div class="auth-buttons">
+    <a href="login.html" class="btn-outline">Login</a>
+    <a href="signup.html" class="btn-primary">Sign Up</a>
+  </div>
+
+  <div class="menu" id="menuBtn">☰</div>
+</header>
+
+<!--------------------------------------- Login ------------------------------------------->
+
+<div class="auth-container">
+  <h2>Login</h2>
+
+  <input type="email" id="loginEmail" placeholder="Email">
+  <input type="password" id="loginPassword" placeholder="Password">
+
+  <button onclick="login()">Login</button>
+
+  <p>Don't have an account? <a href="signup.html">Signup</a></p>
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

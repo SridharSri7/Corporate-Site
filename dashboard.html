@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<!-- NavBar -->
+
+<header class="navbar">
+  <div class="logo">NovaCorp</div>
+
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <div class="auth-buttons">
+    <a href="login.html" class="btn-outline">Login</a>
+    <a href="signup.html" class="btn-primary">Sign Up</a>
+  </div>
+
+  <div class="menu" id="menuBtn">☰</div>
+</header>
+
+<!------------------------------------- Dashboard ------------------------------------------------>
+
+<div class="dashboard">
+  <h1>Welcome 👋</h1>
+  <h2 id="userName"></h2>
+
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>
