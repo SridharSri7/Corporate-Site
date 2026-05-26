@@ -1,3 +1,52 @@
+function clearAuthForms() {
+  // SIGNUP FIELDS
+  const signupFields = [
+    "signupName",
+    "signupEmail",
+    "signupPassword",
+    "signupConfirmPassword"
+  ];
+
+  signupFields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+
+  // LOGIN FIELDS
+  const loginFields = [
+    "loginEmail",
+    "loginPassword"
+  ];
+
+  loginFields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+
+  // OPTIONAL: clear hint
+  const hint = document.getElementById("passwordHint");
+  if (hint) {
+    hint.textContent = "";
+    hint.classList.add("hidden");
+  }
+
+  // OPTIONAL: clear errors
+  const signupError = document.getElementById("signupError");
+  const loginError = document.getElementById("loginError");
+
+  if (signupError) {
+    signupError.innerText = "";
+    signupError.style.display = "none";
+  }
+
+  if (loginError) {
+    loginError.innerText = "";
+    loginError.style.display = "none";
+  }
+}
+
+
+
 // ====================================== PASSWORD VALIDATION ======================================
 function isStrongPassword(password) {
   const minLength = password.length >= 8;
@@ -156,6 +205,11 @@ function signup() {
     if (typeof showLogin === "function") {
       showLogin();
     }
+  }, 1200);
+
+  setTimeout(() => {
+    clearAuthForms();
+    showLogin();
   }, 1200);
 }
 
