@@ -689,6 +689,7 @@ body{
 
   .hero{
     padding:180px 6% 100px;
+    max-height:50vh;
   }
 
   .hero h1{
@@ -841,6 +842,7 @@ body{
 
   .hero{
     padding:180px 6% 100px;
+    max-height:50vh;
   }
 
   .hero h1{
