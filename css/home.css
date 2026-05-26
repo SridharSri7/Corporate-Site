@@ -679,6 +679,16 @@ body{
 
 @media(max-width:768px){
 
+  .btn-outline,
+.btn-primary{
+  padding:5px 10px;
+  border-radius:40px;
+  text-decoration:none;
+  font-size:8px;
+  font-weight:600;
+  transition:0.4s;
+}
+
   .navbar{
     padding:20px 6%;
   }
@@ -804,6 +814,16 @@ body{
 
 @media(max-width:768px){
 
+    .btn-outline,
+.btn-primary{
+  padding:5px 10px;
+  border-radius:40px;
+  text-decoration:none;
+  font-size:8px;
+  font-weight:600;
+  transition:0.4s;
+}
+
   .navbar{
     padding:20px 6%;
   }
@@ -855,6 +875,15 @@ body{
 /* ================= SMALL MOBILE ================= */
 
 @media(max-width:480px){
+
+    .btn-outline,
+.btn-primary{
+  padding:5px 10px;
+  border-radius:40px;
+  text-decoration:none;
+  
+  
+}
 
   .hero h1{
     font-size:38px;
@@ -929,6 +958,75 @@ body{
 
 
 /* =========================== SIGNUP AND LOGIN FORMS =========================== */
+
+.hidden{
+  display:none;
+}
+
+.hint-text{
+  font-size:12px;
+  margin-top:5px;
+  color:#ef4444;
+}
+
+.signup-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.role-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.role-selector {
+  margin: 10px 0;
+}
+
+.role-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.role-card {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  background: #1e293b;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+
+.role-card:hover {
+  transform: scale(1.05);
+}
+
+.role-card.active {
+  border: 2px solid #3b82f6;
+  background: #0f172a;
+}
+
+.role-avatar {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+/* .................................................................. */
+
+
 /* ================= RESET ================= */
 
 *{
@@ -1336,4 +1434,156 @@ body{
     right:18px;
   }
 
+}
+
+
+
+
+/* =================================== final signup form  */
+/* ================= POPUP BASE ================= */
+.popup-signup-box {
+  width: 100%;
+  max-width: 420px;
+  background: #0f172a;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  color: #fff;
+  animation: fadeIn 0.3s ease;
+}
+
+/* TITLE */
+.popup-signup-box h2 {
+  font-size: 26px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.popup-signup-box span {
+  font-size: 13px;
+  color: #94a3b8;
+  display: block;
+  margin-bottom: 18px;
+}
+
+/* ================= ROLE SELECTOR ================= */
+.role-selector {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.role-card {
+  flex: 1;
+  padding: 14px 10px;
+  border-radius: 14px;
+  background: #111c33;
+  border: 1px solid #1f2a44;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.role-card .avatar {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.role-card p {
+  font-size: 13px;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* HOVER */
+.role-card:hover {
+  transform: translateY(-3px);
+  border-color: #3b82f6;
+  box-shadow: 0 10px 25px rgba(59,130,246,0.2);
+}
+
+/* ACTIVE STATE */
+.role-card.active {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  border: none;
+  box-shadow: 0 10px 30px rgba(37,99,235,0.35);
+  transform: scale(1.03);
+}
+
+/* ================= INPUTS ================= */
+.popup-signup-box input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: 1px solid #243042;
+  background: #0b1220;
+  color: #fff;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.popup-signup-box input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+/* ================= ERROR TEXT ================= */
+.error-text {
+  font-size: 13px;
+  color: #f87171;
+  margin: 6px 0 10px;
+  display: none;
+}
+
+/* ================= BUTTON ================= */
+.popup-signup-box button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+  margin-top: 6px;
+}
+
+.popup-signup-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(59,130,246,0.3);
+}
+
+/* ================= SWITCH TEXT ================= */
+.popup-switch {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.popup-switch span {
+  color: #3b82f6;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.popup-switch span:hover {
+  text-decoration: underline;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

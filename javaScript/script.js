@@ -1,162 +1,224 @@
 
-// ================= NAVBAR TOGGLE (SAFE) =================
+// ================= PASSWORD VALIDATION =================
+function isValidPassword(password) {
+  const minLength = password.length >= 8;
+  const hasLetter = /[a-zA-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSymbol = /[!@#$%^&*(),.?":{}|<>_\-+=/\\[\]]/.test(password);
 
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
-
-if (menuBtn && navLinks) {
-  menuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
-  });
+  return minLength && hasLetter && hasNumber && hasSymbol;
 }
 
-// OPTIONAL: close menu when clicking a link (professional UX)
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("show");
+// ================= ERROR HANDLER =================
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.innerText = msg;
+    el.style.display = "block";
+  }
+}
+
+function hideError(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.innerText = "";
+    el.style.display = "none";
+  }
+}
+
+// ================= INIT POPUP =================
+document.addEventListener("DOMContentLoaded", () => {
+
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
+
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+  }
+
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => navLinks?.classList.remove("show"));
   });
+
+  initPopup();
 });
 
-// ================= SIGNUP =================
-function signup() {
-  let name = document.getElementById("name")?.value;
-  let email = document.getElementById("email")?.value;
-  let password = document.getElementById("password")?.value;
+// ================= POPUP =================
+function initPopup() {
+  const overlay = document.getElementById("popupOverlay");
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
 
-  if (!name || !email || !password) {
-    alert("Please fill all fields");
-    return;
-  }
+  if (!overlay || !loginForm || !signupForm) return;
 
-  const user = { name, email, password };
-
-  localStorage.setItem("user", JSON.stringify(user));
-
-  alert("Signup successful!");
-  window.location.href = "login.html";
+  window._popup = { overlay, loginForm, signupForm };
 }
 
-
-// ================= LOGIN =================
-function login() {
-  let email = document.getElementById("loginEmail")?.value;
-  let password = document.getElementById("loginPassword")?.value;
-
-  if (!email || !password) {
-    alert("Enter email and password");
-    return;
-  }
-
-  let user = JSON.parse(localStorage.getItem("user"));
-
-  if (!user) {
-    alert("No user found. Please signup first.");
-    return;
-  }
-
-  if (email === user.email && password === user.password) {
-    localStorage.setItem("loggedIn", "true");
-    window.location.href = "dashboard.html";
-  } else {
-    alert("Invalid credentials");
-  }
-}
-
-
-// ================= DASHBOARD SECURITY =================
-if (window.location.pathname.includes("dashboard")) {
-  let user = JSON.parse(localStorage.getItem("user"));
-
-  if (!localStorage.getItem("loggedIn") || !user) {
-    window.location.href = "login.html";
-  } else {
-    const nameEl = document.getElementById("userName");
-    if (nameEl) {
-      nameEl.innerText = user.name;
-    }
-  }
-}
-
-
-// ================= LOGOUT =================
-function logout() {
-  localStorage.removeItem("loggedIn");
-  window.location.href = "login.html";
-}
-
-// ===================== safe ===================
-const sections = document.querySelectorAll(".section");
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    }
-  });
-}, {
-  threshold: 0.1
-});
-
-sections.forEach((sec) => observer.observe(sec));
-
-// ================== GO HOME =================
-
-function goHome() {
-  window.location.href = "index.html";
-}
-
-
-// ================= AUTH POPUP =================
-
-const overlay = document.getElementById("popupOverlay");
-const loginForm = document.getElementById("loginForm");
-const signupForm = document.getElementById("signupForm");
-
-// OPEN LOGIN
 function openLogin() {
-  overlay.classList.add("show");
-
-  loginForm.classList.remove("hidden");
-  signupForm.classList.add("hidden");
+  const p = window._popup;
+  p.overlay.classList.add("show");
+  p.loginForm.classList.remove("hidden");
+  p.signupForm.classList.add("hidden");
 }
 
-// OPEN SIGNUP
 function openSignup() {
-  overlay.classList.add("show");
-
-  signupForm.classList.remove("hidden");
-  loginForm.classList.add("hidden");
+  const p = window._popup;
+  p.overlay.classList.add("show");
+  p.signupForm.classList.remove("hidden");
+  p.loginForm.classList.add("hidden");
 }
 
-// CLOSE POPUP
 function closePopup() {
-  overlay.classList.remove("show");
-}
-
-// SWITCH FORMS
-function showSignup() {
-  loginForm.classList.add("hidden");
-  signupForm.classList.remove("hidden");
+  window._popup.overlay.classList.remove("show");
 }
 
 function showLogin() {
-  signupForm.classList.add("hidden");
-  loginForm.classList.remove("hidden");
+  const p = window._popup;
+  p.loginForm.classList.remove("hidden");
+  p.signupForm.classList.add("hidden");
 }
 
-// CLOSE WHEN CLICK OUTSIDE
-overlay.addEventListener("click", (e) => {
+function showSignup() {
+  const p = window._popup;
+  p.signupForm.classList.remove("hidden");
+  p.loginForm.classList.add("hidden");
+}
 
-  if(e.target === overlay){
-    closePopup();
+// ================= USERS DB =================
+function getUsers() {
+  return JSON.parse(localStorage.getItem("users")) || [];
+}
+
+function saveUsers(users) {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+// ================= SIGNUP =================
+function signup() {
+
+  const name = document.getElementById("signupName")?.value.trim();
+  const email = document.getElementById("signupEmail")?.value.trim().toLowerCase();
+  const password = document.getElementById("signupPassword")?.value.trim();
+  const confirm = document.getElementById("signupConfirmPassword")?.value.trim();
+  const role = document.getElementById("signupRole")?.value || "user";
+
+  hideError("signupError");
+
+  if (!name || !email || !password || !confirm) {
+    showError("signupError", "Please fill all fields");
+    return;
   }
 
-});
+  if (!isValidPassword(password)) {
+    showError(
+      "signupError",
+      "Password must be 8+ chars with letter, number & symbol"
+    );
+    return;
+  }
 
-// ================= FORGOT PASSWORD (SAFE) =================
+  if (password !== confirm) {
+    showError("signupError", "Passwords do not match");
+    return;
+  }
 
+  let users = getUsers();
 
+  if (users.find(u => u.email === email)) {
+    showError("signupError", "User already exists");
+    return;
+  }
 
+  users.push({ name, email, password, role });
+  saveUsers(users);
+
+  showError("signupError", "Account created! You can login now.");
+
+  setTimeout(() => {
+    showLogin();
+    hideError("signupError");
+  }, 1200);
+}
+
+// ================= LOGIN =================
+function login() {
+
+  const email = document.getElementById("loginEmail")?.value.trim().toLowerCase();
+  const password = document.getElementById("loginPassword")?.value.trim();
+  const role = document.getElementById("loginRole")?.value || "user";
+
+  hideError("loginError");
+
+  if (!email || !password) {
+    showError("loginError", "Enter email and password");
+    return;
+  }
+
+  if (!isValidPassword(password)) {
+    showError(
+      "loginError",
+      "Password must be 8+ chars with letter, number & symbol"
+    );
+    return;
+  }
+
+  let users = getUsers();
+
+  let user = users.find(u => u.email === email);
+
+  // AUTO CREATE USER (NO SIGNUP REQUIRED)
+  if (!user) {
+    user = {
+      name: email.split("@")[0],
+      email,
+      password,
+      role
+    };
+
+    users.push(user);
+    saveUsers(users);
+  }
+
+  // PASSWORD CHECK
+  if (user.password !== password) {
+    showError("loginError", "Incorrect password");
+    return;
+  }
+
+  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("loggedIn", "true");
+
+  window.location.href = "dashboard.html";
+}
+
+// ================= ROLE SELECTION UI =================
+function selectRole(role) {
+
+  const userCard = document.getElementById("userRoleCard");
+  const adminCard = document.getElementById("adminRoleCard");
+  const hiddenRole = document.getElementById("signupRole");
+
+  if (role === "admin") {
+    adminCard?.classList.add("active");
+    userCard?.classList.remove("active");
+  } else {
+    userCard?.classList.add("active");
+    adminCard?.classList.remove("active");
+  }
+
+  if (hiddenRole) hiddenRole.value = role;
+}
+
+// ================= LOGOUT =================
+function logout() {
+  localStorage.removeItem("user");
+  localStorage.removeItem("loggedIn");
+  window.location.href = "index.html";
+}
+
+// ================= FORGOT PASSWORD =================
 function forgotPassword() {
   window.location.href = "error.html";
 }

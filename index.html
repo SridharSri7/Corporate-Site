@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>Home | Stackly</title>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/home.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -404,6 +404,7 @@
           type="password"
           placeholder="Enter Password"
         >
+        <small id="passwordHint" class="hint-text"> </small>
 
         <!-- FORGOT PASSWORD -->
         <p class="popup-forgot">
@@ -439,60 +440,52 @@
       </div>
 
       <!-- SIGNUP -->
-      <div id="signupForm"
-      class="popup-signup-box hidden">
+      <!-- ================= SIGNUP FORM ================= -->
+<div id="signupForm" class="popup-signup-box hidden">
 
-        <h2>Create Account</h2>
+  <h2>Create Account</h2>
+  <span>Create your new account</span>
 
-        <span>
-          Create your new account
-        </span>
+  <!-- ROLE SELECTION (AVATAR STYLE) -->
+  <div class="role-selector">
 
-        <input
-          id="signupName"
-          type="text"
-          placeholder="Enter Name"
-        >
+    <div id="userRoleCard" class="role-card active" onclick="selectRole('user')">
+      <div class="avatar">👤</div>
+      <p>User</p>
+    </div>
 
-        <input
-          id="signupEmail"
-          type="email"
-          placeholder="Enter Email"
-        >
+    <div id="adminRoleCard" class="role-card" onclick="selectRole('admin')">
+      <div class="avatar">🛡️</div>
+      <p>Admin</p>
+    </div>
 
-        <input
-          id="signupPassword"
-          type="password"
-          placeholder="Enter Password"
-        >
+  </div>
 
-        <select id="signupRole">
+  <!-- INPUTS -->
+  <input id="signupName" type="text" placeholder="Enter Name">
+  <input id="signupEmail" type="email" placeholder="Enter Email">
+  <input id="signupPassword" type="password" placeholder="Enter Password">
+  <input id="signupConfirmPassword" type="password" placeholder="Confirm Password">
 
-          <option value="user">
-            User
-          </option>
+  <!-- HIDDEN ROLE -->
+  <select id="signupRole" style="display:none;">
+    <option value="user">User</option>
+    <option value="admin">Admin</option>
+  </select>
 
-          <option value="admin">
-            Admin
-          </option>
+  <!-- ERROR MESSAGE -->
+  <p id="signupError" class="error-text"></p>
 
-        </select>
+  <!-- BUTTON -->
+  <button onclick="signup()">Create Account</button>
 
-        <button onclick="signup()">
-          Create Account
-        </button>
+  <!-- SWITCH -->
+  <p class="popup-switch">
+    Already have an account?
+    <span onclick="showLogin()">Login</span>
+  </p>
 
-        <p class="popup-switch">
-
-          Already have an account?
-
-          <span onclick="showLogin()">
-            Login
-          </span>
-
-        </p>
-
-      </div>
+</div>
 
     </div>
 
