@@ -1,32 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sign Up</title>
-  <link rel="stylesheet" href="css/auth.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup | Stackly</title>
+
+  <link rel="stylesheet" href="css/signup.css">
 </head>
 <body>
 
+<!-- BACKGROUND -->
+<div class="bg-glow"></div>
+
+<!-- MAIN CONTAINER -->
 <div class="auth-container">
 
-  <h2>Create Account</h2>
+  <!-- LEFT SIDE -->
+  <div class="auth-left">
 
-  <input type="text" id="name" placeholder="Enter Name">
-  <input type="email" id="email" placeholder="Enter Email">
-  <input type="password" id="password" placeholder="Enter Password">
+    <h1>Create Account 🚀</h1>
 
-  <!-- ROLE SELECTION -->
-  <select id="role">
-    <option value="user">User</option>
-    <option value="manager">Manager</option>
-    <option value="admin">Admin</option>
-  </select>
+    <p>
+      Join Stackly and manage your projects,
+      analytics, team workflow and productivity
+      from one powerful dashboard.
+    </p>
 
-  <button onclick="signup()">Sign Up</button>
+    <div class="feature-list">
+      <div class="feature-card">📈 Smart Analytics</div>
+      <div class="feature-card">⚡ Productivity Tools</div>
+      <div class="feature-card">🔐 Secure Dashboard Access</div>
+    </div>
 
-  <p>Already have an account? <a href="login.html">Login</a></p>
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="auth-right">
+
+    <div class="signup-box">
+
+      <h2>Signup</h2>
+      <span>Create your new account</span>
+
+      <input id="name" type="text" placeholder="Enter Name">
+
+      <input id="email" type="email" placeholder="Enter Email">
+
+      <input id="password" type="password" placeholder="Enter Password">
+
+      <select id="role">
+        <option value="user">User</option>
+        <option value="manager">Manager</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <button onclick="signup()">Create Account</button>
+
+      <p class="switch-page">
+        Already have an account?
+        <a href="login.html">Login</a>
+      </p>
+
+    </div>
+
+  </div>
 
 </div>
 
-<script src="./javaScript/auth.js"></script>
+<script src="javaScript/auth.js"></script>
+
 </body>
 </html>

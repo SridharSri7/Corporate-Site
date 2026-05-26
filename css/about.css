@@ -12,12 +12,31 @@ body {
   line-height: 28px;
 }
 
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  cursor: pointer;
+}
+
+.sidebar-logo img {
+  width: 120px;      /* adjust size */
+  height: auto;
+  object-fit: contain;
+  transition: 0.3s ease;
+}
+
+.sidebar-logo img:hover {
+  transform: scale(1.05);
+}
+
 /* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
+  padding: 0 50px;
   background: #0f172a;
   position: sticky;
   top: 0;
@@ -696,4 +715,173 @@ body {
     padding-left:8px;
   }
 
+}
+
+
+/* ===================================== OUR TEAM ====================================== */
+/* ================= OUR TEAM ENHANCED ================= */
+
+.our-team {
+  padding: 120px 20px;
+  text-align: center;
+  position: relative;
+}
+
+/* heading glow */
+.team-header h2 {
+  font-size: 42px;
+  background: linear-gradient(90deg, #38bdf8, #a78bfa, #38bdf8);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.team-header p {
+  color: #cbd5e1;
+  max-width: 700px;
+  margin: 15px auto 60px;
+}
+
+/* ================= LEADERSHIP CARDS ================= */
+
+.leadership {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* card base */
+.leader-card {
+  width: 260px;
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  transform: translateY(40px);
+  opacity: 0;
+  animation: fadeUp 0.8s forwards;
+}
+
+/* stagger effect */
+.leader-card:nth-child(1) { animation-delay: 0.2s; }
+.leader-card:nth-child(2) { animation-delay: 0.4s; }
+.leader-card:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* glowing animated border */
+.leader-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(45deg, #38bdf8, #a78bfa, #38bdf8);
+  background-size: 300% 300%;
+  animation: borderMove 4s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@keyframes borderMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* hover lift + tilt */
+.leader-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(56, 189, 248, 0.2);
+}
+
+/* avatar animation */
+.avatar {
+  font-size: 45px;
+  margin-bottom: 10px;
+  display: inline-block;
+  animation: floatAvatar 3s ease-in-out infinite;
+}
+
+@keyframes floatAvatar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* role text highlight */
+.leader-card span {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #38bdf8;
+  letter-spacing: 1px;
+}
+
+/* ================= TEAM CULTURE STRIP ================= */
+
+.team-culture {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.team-culture div {
+  padding: 12px 18px;
+  background: #111827;
+  border-radius: 30px;
+  font-size: 14px;
+  color: #cbd5e1;
+  transition: 0.3s;
+  animation: popIn 0.8s ease forwards;
+  opacity: 0;
+}
+
+/* stagger culture chips */
+.team-culture div:nth-child(1) { animation-delay: 0.2s; }
+.team-culture div:nth-child(2) { animation-delay: 0.4s; }
+.team-culture div:nth-child(3) { animation-delay: 0.6s; }
+.team-culture div:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes popIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.team-culture div:hover {
+  background: #38bdf8;
+  color: #000;
+  transform: translateY(-3px);
+}
+
+/* scroll reveal */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }

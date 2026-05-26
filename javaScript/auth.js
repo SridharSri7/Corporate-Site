@@ -1,71 +1,69 @@
-// ================= SIGNUP =================
+// ========== GET USERS ==========
+function getUsers() {
+  return JSON.parse(localStorage.getItem("users")) || [];
+}
+
+// ========== SAVE USERS ==========
+function saveUsers(users) {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+// ========== SIGNUP ==========
 function signup() {
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const password = document.getElementById("password").value.trim();
   const role = document.getElementById("role").value;
 
-  if (!name || !email || !password) {
-    alert("Please fill all fields");
+  if (!name || !email || !password || !role) {
+    alert("Fill all fields");
     return;
   }
 
-  // Get existing users
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let users = getUsers();
 
-  // check duplicate email
-  const exist = users.find(u => u.email === email);
+  const exists = users.find(u => u.email === email);
 
-  if (exist) {
-    alert("User already exists!");
+  if (exists) {
+    alert("User already exists");
     return;
   }
 
-  // add new user
-  users.push({
-    name,
-    email,
-    password,
-    role
-  });
+  users.push({ name, email, password, role });
 
-  localStorage.setItem("users", JSON.stringify(users));
+  saveUsers(users);
 
-  alert("Signup successful! Please login.");
+  alert("Signup successful!");
   window.location.href = "login.html";
 }
 
-
-// ================= LOGIN =================
+// ========== LOGIN ==========
 function login() {
 
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const password = document.getElementById("password").value.trim();
+  const role = document.getElementById("role").value;
 
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let users = getUsers();
 
-  const user = users.find(u => u.email === email && u.password === password);
+  const user = users.find(u =>
+    u.email === email &&
+    u.password === password &&
+    u.role === role
+  );
 
   if (!user) {
-    alert("Invalid email or password");
+    alert("Invalid login");
     return;
   }
 
-  // store current session user
-  localStorage.setItem("user", JSON.stringify({
-    name: user.name,
-    email: user.email,
-    role: user.role
-  }));
-
-  alert("Login successful!");
+  localStorage.setItem("user", JSON.stringify(user));
 
   window.location.href = "dashboard.html";
 }
 
-
-// ================= LOGOUT =================
+// ========== LOGOUT ==========
 function logout() {
   localStorage.removeItem("user");
   window.location.href = "login.html";

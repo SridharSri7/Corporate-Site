@@ -1,3 +1,11 @@
+
+// =============================== NAVIGATION =================================
+function goHome() {
+  window.location.href = "index.html";
+}
+
+// ==========================================================
+
 function toggleDetail(element) {
 
   const wrapper = element.parentElement;

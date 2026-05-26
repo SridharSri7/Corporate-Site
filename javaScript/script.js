@@ -98,3 +98,65 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 sections.forEach((sec) => observer.observe(sec));
+
+// ================== GO HOME =================
+
+function goHome() {
+  window.location.href = "index.html";
+}
+
+
+// ================= AUTH POPUP =================
+
+const overlay = document.getElementById("popupOverlay");
+const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+
+// OPEN LOGIN
+function openLogin() {
+  overlay.classList.add("show");
+
+  loginForm.classList.remove("hidden");
+  signupForm.classList.add("hidden");
+}
+
+// OPEN SIGNUP
+function openSignup() {
+  overlay.classList.add("show");
+
+  signupForm.classList.remove("hidden");
+  loginForm.classList.add("hidden");
+}
+
+// CLOSE POPUP
+function closePopup() {
+  overlay.classList.remove("show");
+}
+
+// SWITCH FORMS
+function showSignup() {
+  loginForm.classList.add("hidden");
+  signupForm.classList.remove("hidden");
+}
+
+function showLogin() {
+  signupForm.classList.add("hidden");
+  loginForm.classList.remove("hidden");
+}
+
+// CLOSE WHEN CLICK OUTSIDE
+overlay.addEventListener("click", (e) => {
+
+  if(e.target === overlay){
+    closePopup();
+  }
+
+});
+
+// ================= FORGOT PASSWORD (SAFE) =================
+
+
+
+function forgotPassword() {
+  window.location.href = "error.html";
+}

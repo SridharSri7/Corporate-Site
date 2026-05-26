@@ -1,3 +1,11 @@
+
+// =============================== NAVIGATION =================================
+function goHome() {
+  window.location.href = "index.html";
+}
+
+// ==========================================================
+
 // ================= MOBILE MENU =================
 
 const menuBtn = document.getElementById("menuBtn");

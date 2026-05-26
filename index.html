@@ -10,7 +10,10 @@
 
 <!-- NAVBAR -->
 <header class="navbar">
-  <div class="logo">Stackly</div>
+
+  <div class="sidebar-logo" onclick="goHome()">
+  <img src="assets/logo-stackly (1).webp" alt="Company Logo">
+</div>
 
   <nav>
     <ul class="nav-links" id="navLinks">
@@ -24,9 +27,9 @@
   </nav>
 
   <div class="auth-buttons">
-    <a href="login.html" class="btn-outline">Login</a>
-    <a href="signup.html" class="btn-primary">Sign Up</a>
-  </div>
+  <button class="btn-outline" onclick="openLogin()">Login</button>
+  <button class="btn-primary" onclick="openSignup()">Sign Up</button>
+</div>
 
   <div class="menu" id="menuBtn">☰</div>
 </header>
@@ -337,6 +340,163 @@
   </div>
 
 </footer>
+<!-- ================= AUTH POPUP ================= -->
+
+<div id="popupOverlay" class="popup-overlay">
+
+  <div class="popup-container">
+
+    <!-- CLOSE BUTTON -->
+    <span class="popup-close" onclick="closePopup()">
+      &times;
+    </span>
+
+    <!-- LEFT SIDE -->
+    <div class="popup-left">
+
+      <h1>Welcome 👋</h1>
+
+      <p>
+        Access your dashboard, analytics,
+        projects and management system.
+      </p>
+
+      <div class="popup-feature-list">
+
+        <div class="popup-feature-card">
+          📊 Real-time Analytics
+        </div>
+
+        <div class="popup-feature-card">
+          ⚡ Fast Dashboard
+        </div>
+
+        <div class="popup-feature-card">
+          🔒 Secure Authentication
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="popup-right">
+
+      <!-- LOGIN -->
+      <div id="loginForm" class="popup-login-box">
+
+        <h2>Login</h2>
+
+        <span>
+          Access your account
+        </span>
+
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="Enter Email"
+        >
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Enter Password"
+        >
+        
+        <!-- FORGOT PASSWORD -->
+        <p class="popup-forgot">
+          <a href="#" onclick="forgotPassword()">Forgot Password?</a>
+        </p>
+
+        <select id="loginRole">
+
+          <option value="user">
+            User
+          </option>
+
+          <option value="admin">
+            Admin
+          </option>
+
+        </select>
+
+        <button onclick="login()">
+          Login
+        </button>
+
+        <p class="popup-switch">
+
+          Don't have an account?
+
+          <span onclick="showSignup()">
+            Signup
+          </span>
+
+        </p>
+
+      </div>
+
+      <!-- SIGNUP -->
+      <div id="signupForm"
+      class="popup-signup-box hidden">
+
+        <h2>Create Account</h2>
+
+        <span>
+          Create your new account
+        </span>
+
+        <input
+          id="signupName"
+          type="text"
+          placeholder="Enter Name"
+        >
+
+        <input
+          id="signupEmail"
+          type="email"
+          placeholder="Enter Email"
+        >
+
+        <input
+          id="signupPassword"
+          type="password"
+          placeholder="Enter Password"
+        >
+
+        <select id="signupRole">
+
+          <option value="user">
+            User
+          </option>
+
+          <option value="admin">
+            Admin
+          </option>
+
+        </select>
+
+        <button onclick="signup()">
+          Create Account
+        </button>
+
+        <p class="popup-switch">
+
+          Already have an account?
+
+          <span onclick="showLogin()">
+            Login
+          </span>
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 
 <script src="javaScript/script.js"></script>

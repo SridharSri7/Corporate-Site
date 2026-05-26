@@ -1,84 +1,665 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Dashboard</title>
   <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-<header class="navbar">
-  <div class="logo">Stackly</div>
-
-  <nav>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html" class="active">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-
-  <div class="menu" id="menuBtn">☰</div>
-</header>
-
-<!-- main layout -->
-
-<div class="layout">
+<div class="dashboard-layout">
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <h2>Stackly</h2>
+  <div class="sidebar-logo" onclick="goHome()">
+  <img src="assets/logo-stackly (1).webp" alt="Company Logo">
+</div>
 
-    <ul>
-      <li><a href="#">Dashboard</a></li>
-      <li class="admin-only"><a href="#">Admin Panel</a></li>
-      <li class="manager-only"><a href="#">Team Reports</a></li>
-      <li><a href="#">Profile</a></li>
-      <li><a href="#" onclick="logout()">Logout</a></li>
-    </ul>
-  </aside>
+  <ul>
+    <li onclick="showPage('homePage')">Dashboard</li>
+    <li onclick="showPage('profilePage')">Profile</li>
+    <li onclick="showPage('tasksPage')">My Tasks</li>
+    <li onclick="showPage('notifyPage')">Notifications</li>
 
-  <!-- MAIN CONTENT -->
+    <li class="admin-only" onclick="showPage('adminPage')">
+      Admin Panel
+    </li>
+
+    <li onclick="showPage('settingsPage')">Settings</li>
+    <li onclick="logout()">Logout</li>
+  </ul>
+</aside>
+
+  <!-- MAIN -->
   <main class="main">
 
-    <div class="topbar">
-      <h1>Welcome, <span id="userName">User</span> 👋</h1>
-      <p id="userRole"></p>
+  <!-- TOPBAR -->
+  <div class="topbar">
+
+    <div>
+      <h1 id="pageTitle">Dashboard</h1>
+      <p>Welcome back 👋</p>
     </div>
 
-    <!-- DASHBOARD CARDS -->
-    <div class="cards">
-
-      <div class="card admin-only">
-        <h3>Admin Stats</h3>
-        <p>Manage users & system settings</p>
+    <div class="user-box">
+      <div class="user-info">
+        <h3 id="userName"></h3>
+        <span id="userEmail"></span>
       </div>
 
-      <div class="card manager-only">
-        <h3>Team Performance</h3>
-        <p>View team analytics</p>
-      </div>
+      <div id="userRole" class="role-badge"></div>
+    </div>
 
-      <div class="card">
-        <h3>My Tasks</h3>
-        <p>Personal dashboard overview</p>
-      </div>
+  </div>
 
-      <div class="card">
-        <h3>Notifications</h3>
-        <p>Latest updates and alerts</p>
+  <!-- SIDEBAR SECTIONS SYSTEM -->
+
+  <!-- HOME -->
+  <section class="page active" id="homePage">
+
+  <!-- HERO KPI STRIP -->
+  <div class="kpi-hero">
+
+    <div class="kpi-box animate">
+      <h3>Total Users</h3>
+      <h2 class="count" data-target="1240">0</h2>
+    </div>
+
+    <div class="kpi-box animate">
+      <h3>Revenue</h3>
+      <h2 class="count" data-target="12540">$0</h2>
+    </div>
+
+    <div class="kpi-box animate">
+      <h3>Sessions</h3>
+      <h2 class="count" data-target="320">0</h2>
+    </div>
+
+    <div class="kpi-box animate">
+      <h3>Growth</h3>
+      <h2 class="count" data-target="18">0%</h2>
+    </div>
+
+  </div>
+
+  <!-- MAIN ANALYTICS GRID -->
+  <div class="analytics-grid">
+
+    <div class="card big animate">
+      <h3>📈 User Growth Trend</h3>
+      <canvas id="lineChart"></canvas>
+    </div>
+
+    <div class="card big animate">
+      <h3>💰 Revenue Flow</h3>
+      <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="card animate">
+      <h3>🌍 Traffic Sources</h3>
+      <canvas id="donutChart"></canvas>
+    </div>
+
+    <div class="card animate">
+      <h3>⚡ System Health</h3>
+      <div class="health-bar">
+        <div style="width: 92%"></div>
+      </div>
+      <p>Stable - 92%</p>
+    </div>
+
+    <div class="card animate">
+      <h3>🎯 Goals Progress</h3>
+      <div class="goal">
+        <span>Monthly Target</span>
+        <div class="progress"><div style="width: 70%"></div></div>
+      </div>
+    </div>
+
+    <div class="card animate">
+      <h3>🔥 Live Activity</h3>
+      <div class="activity-feed">
+        <p>✔ User John signed up</p>
+        <p>✔ Payment received</p>
+        <p>✔ New admin login</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SMART INSIGHTS -->
+  <div class="insight-panel animate">
+
+    <h3>🧠 Smart Insights</h3>
+
+    <div class="insight">
+      🚀 Your user growth increased by 18% this month
+    </div>
+
+    <div class="insight">
+      ⚠ Server load is higher during 6–9 PM
+    </div>
+
+    <div class="insight">
+      💡 Recommendation: Optimize mobile UI conversion
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- PROFILE -->
+ <section class="page" id="profilePage">
+
+  <!-- TOP HERO -->
+  <div class="identity-hero">
+
+    <div class="avatar-ring">
+      <div class="avatar-core" id="avatarText">U</div>
+    </div>
+
+    <div class="identity-info">
+      <h1 id="pName">User Name</h1>
+      <p id="pEmail">user@mail.com</p>
+
+      <div class="identity-badges">
+        <span id="pRole" class="badge-role">USER</span>
+        <span class="status-live">● LIVE</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DASHBOARD GRID -->
+  <div class="identity-grid">
+
+    <!-- LEFT STREAM -->
+    <div class="stream-panel">
+
+      <h3>📊 Activity Stream</h3>
+
+      <div class="stream" id="timeline">
+
+        <div class="event">✔ Logged into dashboard</div>
+        <div class="event">✔ Updated profile</div>
+        <div class="event">✔ Viewed analytics</div>
+
       </div>
 
     </div>
 
-  </main>
+    <!-- CENTER STATS -->
+    <div class="stats-panel">
+
+      <div class="stat-box">
+        <h4>Tasks</h4>
+        <span class="count" data-target="12">0</span>
+      </div>
+
+      <div class="stat-box">
+        <h4>Completed</h4>
+        <span class="count" data-target="8">0</span>
+      </div>
+
+      <div class="stat-box">
+        <h4>Projects</h4>
+        <span class="count" data-target="3">0</span>
+      </div>
+
+      <div class="stat-box">
+        <h4>Rank</h4>
+        <span>PRO</span>
+      </div>
+
+      <!-- PROFILE HEALTH -->
+      <div class="health-card">
+        <h4>Profile Health</h4>
+
+        <div class="health-bar">
+          <div id="healthFill"></div>
+        </div>
+
+        <p>Optimized account status</p>
+      </div>
+
+    </div>
+
+    <!-- RIGHT INSIGHTS -->
+    <div class="insight-panel">
+
+      <h3>🧠 Smart Insights</h3>
+
+      <div class="insight">🚀 You are more active than 82% users</div>
+      <div class="insight">⚡ Best activity time: 8–10 PM</div>
+      <div class="insight">📈 Profile engagement rising</div>
+
+      <div class="security-meter">
+        <h4>Security Score</h4>
+        <div class="meter">
+          <div style="width: 85%"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- TASKS -->
+  <section class="page" id="tasksPage">
+
+  <!-- HEADER -->
+  <div class="task-header animate">
+    <h2>📋 Task Management</h2>
+    <p>Plan, track, and complete your work like a pro</p>
+  </div>
+
+  <!-- CREATE TASK -->
+  <div class="task-create card animate">
+
+    <h3>➕ Create New Task</h3>
+
+    <input type="text" id="taskTitle" placeholder="Task Title">
+    <input type="text" id="taskDesc" placeholder="Task Description">
+
+    <div class="task-row">
+      <select id="taskPriority">
+        <option value="low">Low Priority</option>
+        <option value="medium">Medium Priority</option>
+        <option value="high">High Priority</option>
+      </select>
+
+      <input type="date" id="taskDate">
+    </div>
+
+    <input type="text" id="taskTags" placeholder="Tags (e.g. UI, API, Bug)">
+
+    <button onclick="addTask()">Add Task</button>
+
+  </div>
+
+  <!-- SEARCH -->
+  <div class="task-search">
+    <input type="text" placeholder="Search tasks..." onkeyup="searchTasks(this.value)">
+  </div>
+
+  <!-- TASK BOARD -->
+  <div class="task-board">
+
+    <!-- TO DO -->
+    <div class="task-column">
+      <h3>🟡 To Do</h3>
+      <div id="todoList" class="task-list"></div>
+    </div>
+
+    <!-- IN PROGRESS -->
+    <div class="task-column">
+      <h3>🔵 In Progress</h3>
+      <div id="progressList" class="task-list"></div>
+    </div>
+
+    <!-- DONE -->
+    <div class="task-column">
+      <h3>🟢 Completed</h3>
+      <div id="doneList" class="task-list"></div>
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- NOTIFICATIONS -->
+  <section class="page" id="notifyPage">
+
+  <div class="notif-header">
+    <div>
+      <h2>🔔 Notification Center</h2>
+      <p>System alerts, updates, and activity logs</p>
+    </div>
+
+    <div class="notif-meta">
+      <span id="notifCount" class="badge">0</span>
+      <button onclick="markAllRead()">Mark All Read</button>
+      <button onclick="clearNotifications()">Clear</button>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="notif-filters">
+    <button onclick="filterNotif('all')">All</button>
+    <button onclick="filterNotif('system')">System</button>
+    <button onclick="filterNotif('user')">User</button>
+    <button onclick="filterNotif('security')">Security</button>
+    <button onclick="filterNotif('payment')">Payments</button>
+  </div>
+
+  <!-- LIST -->
+  <div id="notifContainer" class="notif-container"></div>
+
+</section>
+
+  <!-- ADMIN PANEL -->
+  <!-- ADMIN PANEL -->
+<section class="page admin-only" id="adminPage">
+
+  <!-- HEADER -->
+  <div class="admin-hero animate">
+    <h2>⚙ Admin Control Center</h2>
+    <p>Manage users, system health, and live operations</p>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="admin-kpis">
+
+    <div class="admin-kpi">
+      <h3>Total Users</h3>
+      <span>1,240</span>
+    </div>
+
+    <div class="admin-kpi">
+      <h3>Active Users</h3>
+      <span>320</span>
+    </div>
+
+    <div class="admin-kpi">
+      <h3>Banned Users</h3>
+      <span>12</span>
+    </div>
+
+    <div class="admin-kpi">
+      <h3>System Status</h3>
+      <span class="status ok">Stable</span>
+    </div>
+
+  </div>
+
+  <!-- TWO COLUMN PANEL -->
+  <div class="admin-grid">
+
+    <!-- USERS TABLE -->
+    <div class="admin-card">
+
+      <h3>👥 User Management</h3>
+
+      <div class="admin-table">
+
+        <div class="row head">
+          <span>Name</span>
+          <span>Email</span>
+          <span>Role</span>
+          <span>Action</span>
+        </div>
+
+        <div class="row">
+          <span>John</span>
+          <span>john@mail.com</span>
+          <span>User</span>
+          <button onclick="banUser(this)">Ban</button>
+        </div>
+
+        <div class="row">
+          <span>Sara</span>
+          <span>sara@mail.com</span>
+          <span>User</span>
+          <button onclick="promoteUser(this)">Promote</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- LIVE SYSTEM -->
+    <div class="admin-card">
+
+      <h3>📡 Live System Feed</h3>
+
+      <div id="adminFeed" class="admin-feed"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- SETTINGS -->
+  <section class="page" id="settingsPage">
+
+  <!-- HEADER -->
+  <div class="settings-hero animate">
+    <h2>⚙ Account Settings</h2>
+    <p>Manage your identity, security, and system preferences</p>
+
+    <div class="role-chip" id="settingsRole">USER</div>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="settings-layout">
+
+    <!-- SIDEBAR TABS -->
+    <div class="settings-side animate">
+
+      <button class="tab active" onclick="openSettings('profile')">👤 Profile</button>
+      <button class="tab" onclick="openSettings('security')">🔒 Security</button>
+      <button class="tab" onclick="openSettings('preferences')">🎛 Preferences</button>
+      <button class="tab" onclick="openSettings('notifications')">🔔 Notifications</button>
+      <button class="tab danger" onclick="openSettings('danger')">⚠ Danger Zone</button>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="settings-content animate">
+
+      <!-- PROFILE -->
+      <section class="page" id="profilePage">
+
+  <!-- COVER HEADER -->
+  <div class="profile-cover animate">
+
+    <div class="profile-avatar">
+      <span id="avatarText">U</span>
+    </div>
+
+    <div class="profile-meta">
+      <h2 id="pName">User Name</h2>
+      <p id="pEmail">user@mail.com</p>
+
+      <div class="meta-row">
+        <span id="pRole" class="role-pill">USER</span>
+        <span class="status-dot">● Active</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="profile-grid">
+
+    <!-- LEFT -->
+    <div class="profile-left animate">
+
+      <!-- STATS -->
+      <div class="stat-grid">
+
+        <div class="stat-card">
+          <h3>Tasks</h3>
+          <p>12</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>Completed</h3>
+          <p>8</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>Projects</h3>
+          <p>3</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>Rank</h3>
+          <p>Pro</p>
+        </div>
+
+      </div>
+
+      <!-- PROFILE COMPLETION -->
+      <div class="card">
+        <h3>Profile Strength</h3>
+
+        <div class="progress-bar">
+          <div id="profileProgress"></div>
+        </div>
+
+        <small>Complete your profile to unlock full features</small>
+      </div>
+
+      <!-- SECURITY SCORE -->
+      <div class="card">
+        <h3>Security Score</h3>
+        <div class="security-score">
+          <span>85%</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="profile-right animate">
+
+      <!-- ACTIVITY -->
+      <div class="activity-card">
+        <h3>Recent Activity</h3>
+
+        <div class="timeline" id="timeline">
+
+          <div class="timeline-item">✔ Logged in</div>
+          <div class="timeline-item">✔ Updated profile</div>
+          <div class="timeline-item">✔ Completed task</div>
+
+        </div>
+      </div>
+
+      <!-- ACCOUNT INFO -->
+      <div class="card">
+        <h3>Account Info</h3>
+
+        <div class="info-row">
+          <span>Name</span>
+          <b id="dName"></b>
+        </div>
+
+        <div class="info-row">
+          <span>Email</span>
+          <b id="dEmail"></b>
+        </div>
+
+        <div class="info-row">
+          <span>Role</span>
+          <b id="dRole"></b>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+      <!-- SECURITY -->
+      <div id="security" class="settings-panel">
+
+        <h3>Security Center</h3>
+
+        <div class="security-card">
+
+          <label>Password Strength</label>
+          <div class="strength-bar">
+            <div id="strengthFill"></div>
+          </div>
+
+          <input type="password" id="oldPass" placeholder="Current Password">
+          <input type="password" id="newPass" placeholder="New Password">
+
+          <button class="primary-btn" onclick="changePassword()">Update Password</button>
+
+        </div>
+
+      </div>
+
+      <!-- PREFERENCES -->
+      <div id="preferences" class="settings-panel">
+
+        <h3>System Preferences</h3>
+
+        <div class="toggle-card">
+          <span>Dark Mode</span>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span></span>
+          </label>
+        </div>
+
+        <div class="toggle-card">
+          <span>Auto Save</span>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span></span>
+          </label>
+        </div>
+
+        <div class="toggle-card">
+          <span>Analytics Tracking</span>
+          <label class="switch">
+            <input type="checkbox">
+            <span></span>
+          </label>
+        </div>
+
+      </div>
+
+      <!-- NOTIFICATIONS -->
+      <div id="notifications" class="settings-panel">
+
+        <h3>Notification Controls</h3>
+
+        <div class="notif-box">
+          <label>Email Alerts</label>
+          <input type="range" min="0" max="100" value="70">
+        </div>
+
+        <div class="notif-box">
+          <label>Push Notifications</label>
+          <input type="range" min="0" max="100" value="50">
+        </div>
+
+      </div>
+
+      <!-- DANGER -->
+      <div id="danger" class="settings-panel danger-panel">
+
+        <h3>Danger Zone</h3>
+
+        <p>This action is irreversible. Proceed with caution.</p>
+
+        <button class="danger-btn" onclick="logout()">Logout</button>
+        <button class="danger-btn" onclick="deleteAccount()">Delete Account</button>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+</main>
 
 </div>
 
-<script src="./javaScript/auth.js"></script>
-<script src="./javaScript/dashboard.js"></script>
+<script src="javaScript/dashboard.js"></script>
+<script src="javaScript/auth.js"></script>
 
 </body>
 </html>

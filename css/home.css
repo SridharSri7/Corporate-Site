@@ -20,6 +20,25 @@ body{
   line-height:1.8;
 }
 
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  cursor: pointer;
+}
+
+.sidebar-logo img {
+  width: 120px;      /* adjust size */
+  height: auto;
+  object-fit: contain;
+  transition: 0.3s ease;
+}
+
+.sidebar-logo img:hover {
+  transform: scale(1.05);
+}
+
 /* ================= SCROLLBAR ================= */
 
 ::-webkit-scrollbar{
@@ -91,7 +110,7 @@ body{
 
 .navbar{
   width:100%;
-  padding:20px 8%;
+  padding:8px 8%;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -161,6 +180,7 @@ body{
 
 .btn-outline{
   border:2px solid #3b82f6;
+  background:linear-gradient(135deg,#2563eb,#06b6d4);
   color:#ffffff;
 }
 
@@ -169,6 +189,7 @@ body{
 }
 
 .btn-primary{
+  border:2px solid #3b82f6;
   background:linear-gradient(135deg,#2563eb,#06b6d4);
   color:#ffffff;
 }
@@ -589,15 +610,41 @@ body{
 
 /* ================= TABLET ================= */
 
+/* ================= MOBILE AUTH BUTTONS ================= */
+
+@media(max-width:992px){
+
+  .auth-buttons{
+
+    display:flex;
+    
+    margin-top:10px;
+    margin-bottom: 10px;
+
+    gap:15px;
+  }
+
+  .auth-buttons button{
+
+    
+
+    padding:8px 15px;
+
+
+    border-radius:12px;
+
+    font-size:17px;
+  }
+
+}
+
 @media(max-width:992px){
 
   .menu{
     display:block;
   }
 
-  .auth-buttons{
-    display:none;
-  }
+  
 
   .nav-links{
     position:fixed;
@@ -721,9 +768,7 @@ body{
     z-index:1001;
   }
 
-  .auth-buttons{
-    display:none;
-  }
+
 
   .nav-links{
     position:absolute;
@@ -876,9 +921,6 @@ body{
     z-index:1001;
   }
 
-  .auth-buttons{
-    display:none;
-  }
 
   .nav-links{
     position:absolute;
@@ -932,6 +974,528 @@ body{
   .nav-links a:hover{
     color:#60a5fa;
     padding-left:8px;
+  }
+
+}
+
+/* ==================================== LOGIN AND SIGNUP FORMS ==================================== */
+
+/* ================= POPUP ================= */
+
+.auth-overlay{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+
+  opacity:0;
+  visibility:hidden;
+  transition:0.3s;
+}
+
+.auth-overlay.show{
+  opacity:1;
+  visibility:visible;
+}
+
+/* POPUP BOX */
+
+.auth-popup{
+  width:400px;
+  background:#111827;
+  padding:40px;
+  border-radius:20px;
+  position:relative;
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* CLOSE BUTTON */
+
+.close-popup{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:28px;
+  cursor:pointer;
+  color:white;
+}
+
+/* FORM */
+
+.auth-form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.auth-form h2{
+  color:white;
+  font-size:30px;
+}
+
+.auth-form input,
+.auth-form select{
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#1f2937;
+  color:white;
+  font-size:15px;
+}
+
+.auth-form button{
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#2563eb;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.auth-form button:hover{
+  background:#1d4ed8;
+}
+
+.switch-text{
+  color:#cbd5e1;
+  text-align:center;
+}
+
+.switch-text span{
+  color:#3b82f6;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.hidden{
+  display:none;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+  .auth-popup{
+    width:90%;
+    padding:30px 20px;
+  }
+
+}
+
+/* =========================== SIGNUP AND LOGIN FORMS =========================== */
+/* ================= RESET ================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+/* ================= POPUP OVERLAY ================= */
+
+.popup-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:rgba(0,0,0,0.75);
+
+  z-index:9999;
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.4s;
+}
+
+.popup-overlay.show{
+  opacity:1;
+  visibility:visible;
+}
+
+/* ================= BACKGROUND GLOW ================= */
+
+.popup-bg-glow{
+  position:absolute;
+  width:100%;
+  height:100%;
+
+  background:
+    radial-gradient(circle at top left,#3b82f680,transparent 35%),
+    radial-gradient(circle at bottom right,#9333ea80,transparent 35%);
+
+  filter:blur(70px);
+
+  animation:popupBgMove 10s infinite alternate;
+}
+
+@keyframes popupBgMove{
+
+  from{
+    transform:scale(1);
+  }
+
+  to{
+    transform:scale(1.2);
+  }
+
+}
+
+/* ================= MAIN CONTAINER ================= */
+
+.popup-container{
+  width:950px;
+  height:580px;
+
+  display:flex;
+
+  overflow:hidden;
+
+  border-radius:25px;
+
+  position:relative;
+  z-index:2;
+
+  background:rgba(255,255,255,0.05);
+
+  backdrop-filter:blur(20px);
+
+  box-shadow:0 20px 50px rgba(0,0,0,0.5);
+
+  animation:popupFade .5s ease;
+}
+
+@keyframes popupFade{
+
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.popup-close{
+  position:absolute;
+
+  top:18px;
+  right:25px;
+
+  font-size:32px;
+  color:#94a3b8;
+
+  cursor:pointer;
+
+  z-index:10;
+
+  transition:.3s;
+}
+
+.popup-close:hover{
+  color:white;
+  transform:rotate(90deg);
+}
+
+/* ================= LEFT SIDE ================= */
+
+.popup-left{
+  flex:1;
+
+  padding:60px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  background:rgba(255,255,255,0.03);
+}
+
+.popup-left h1{
+  font-size:45px;
+  margin-bottom:20px;
+}
+
+.popup-left p{
+  color:#cbd5e1;
+  line-height:1.8;
+  margin-bottom:30px;
+}
+
+/* ================= FEATURE LIST ================= */
+
+.popup-feature-list{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.popup-feature-card{
+  padding:15px;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(10px);
+
+  animation:popupFloat 3s infinite ease-in-out;
+}
+
+.popup-feature-card:nth-child(2){
+  animation-delay:.3s;
+}
+
+.popup-feature-card:nth-child(3){
+  animation-delay:.6s;
+}
+
+@keyframes popupFloat{
+
+  0%,100%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+
+}
+
+/* ================= RIGHT SIDE ================= */
+
+.popup-right{
+  flex:1;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:rgba(0,0,0,0.2);
+}
+
+/* ================= LOGIN + SIGNUP BOX ================= */
+
+.popup-login-box,
+.popup-signup-box{
+  width:80%;
+
+  display:flex;
+  flex-direction:column;
+
+  animation:popupUp 1s ease;
+}
+
+@keyframes popupUp{
+
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+/* ================= HEADINGS ================= */
+
+.popup-login-box h2,
+.popup-signup-box h2{
+  font-size:35px;
+  margin-bottom:10px;
+}
+
+.popup-login-box span,
+.popup-signup-box span{
+  color:#94a3b8;
+  margin-bottom:30px;
+}
+
+/* ================= INPUTS ================= */
+
+.popup-forgot{
+  text-align:right;
+  margin-top:-10px;
+  margin-bottom:15px;
+}
+
+.popup-forgot a{
+  color:#3b82f6;
+  font-size:14px;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.popup-forgot a:hover{
+  text-decoration:underline;
+}
+
+/* ,,,....................................... */
+
+.popup-login-box input,
+.popup-login-box select,
+.popup-signup-box input,
+.popup-signup-box select{
+
+  padding:15px;
+
+  margin-bottom:18px;
+
+  border:none;
+  outline:none;
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,0.08);
+
+  color:white;
+
+  transition:.3s;
+}
+
+.popup-login-box input:focus,
+.popup-login-box select:focus,
+.popup-signup-box input:focus,
+.popup-signup-box select:focus{
+
+  background:rgba(255,255,255,0.15);
+
+  transform:scale(1.02);
+}
+
+/* ================= SELECT OPTION ================= */
+
+.popup-login-box select option,
+.popup-signup-box select option{
+  background:#0f172a;
+  color:white;
+}
+
+/* ================= BUTTON ================= */
+
+.popup-login-box button,
+.popup-signup-box button{
+
+  padding:15px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:linear-gradient(
+    45deg,
+    #3b82f6,
+    #9333ea
+  );
+
+  color:white;
+
+  font-size:16px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.popup-login-box button:hover,
+.popup-signup-box button:hover{
+
+  transform:translateY(-3px);
+
+  box-shadow:0 10px 30px rgba(59,130,246,0.5);
+}
+
+/* ================= SWITCH TEXT ================= */
+
+.popup-switch{
+  margin-top:20px;
+
+  color:#94a3b8;
+
+  text-align:center;
+}
+
+.popup-switch span{
+  color:#3b82f6;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.popup-switch span:hover{
+  text-decoration:underline;
+}
+
+/* ================= HIDDEN ================= */
+
+.hidden{
+  display:none;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+  .popup-container{
+    width:95%;
+    height:auto;
+
+    flex-direction:column;
+  }
+
+  .popup-left{
+    display:none;
+  }
+
+  .popup-right{
+    padding:40px 0;
+  }
+
+  .popup-login-box,
+  .popup-signup-box{
+    width:90%;
+  }
+
+}
+
+@media(max-width:500px){
+
+  .popup-container{
+    border-radius:18px;
+  }
+
+  .popup-login-box h2,
+  .popup-signup-box h2{
+    font-size:28px;
+  }
+
+  .popup-close{
+    top:12px;
+    right:18px;
   }
 
 }

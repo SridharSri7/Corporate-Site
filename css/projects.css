@@ -17,6 +17,25 @@ body{
   overflow-x:hidden;
 }
 
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  cursor: pointer;
+}
+
+.sidebar-logo img {
+  width: 120px;      /* adjust size */
+  height: auto;
+  object-fit: contain;
+  transition: 0.3s ease;
+}
+
+.sidebar-logo img:hover {
+  transform: scale(1.05);
+}
+
 /* ================= NAVBAR ================= */
 .navbar{
   width:100%;
@@ -352,6 +371,7 @@ body{
 
 .timeline-box:hover{
   transform:translateY(-10px);
+  cursor: pointer;
 }
 
 .timeline-box i{
