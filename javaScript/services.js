@@ -12,3 +12,24 @@ function toggleDetail(element) {
   // toggle current
   wrapper.classList.toggle("active");
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const menuBtn = document.querySelector(".menu");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    // OPTIONAL: close menu when clicking a link
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("show");
+      });
+    });
+  }
+
+});
