@@ -166,6 +166,7 @@ body{
 .auth-buttons{
   display:flex;
   gap:15px;
+  
 }
 
 .btn-outline,
@@ -620,6 +621,7 @@ body{
     
     margin-top:10px;
     margin-bottom: 10px;
+   
 
     gap:15px;
   }
@@ -679,15 +681,7 @@ body{
 
 @media(max-width:768px){
 
-  .btn-outline,
-.btn-primary{
-  padding:5px 10px;
-  border-radius:40px;
-  text-decoration:none;
-  font-size:8px;
-  font-weight:600;
-  transition:0.4s;
-}
+
 
   .navbar{
     padding:20px 6%;
@@ -761,6 +755,15 @@ body{
     font-size:30px;
   }
 
+  .newsletter-form input{
+  padding:18px 20px;
+  border:none;
+  border-radius:50px;
+  width:200px;
+  outline:none;
+  font-size:17px;
+}
+
   .footer-bottom-links{
     flex-direction:column;
     gap:12px;
@@ -814,15 +817,7 @@ body{
 
 @media(max-width:768px){
 
-    .btn-outline,
-.btn-primary{
-  padding:5px 10px;
-  border-radius:40px;
-  text-decoration:none;
-  font-size:8px;
-  font-weight:600;
-  transition:0.4s;
-}
+
 
   .navbar{
     padding:20px 6%;
@@ -876,14 +871,7 @@ body{
 
 @media(max-width:480px){
 
-    .btn-outline,
-.btn-primary{
-  padding:5px 10px;
-  border-radius:40px;
-  text-decoration:none;
-  
-  
-}
+
 
   .hero h1{
     font-size:38px;
@@ -1586,4 +1574,51 @@ body{
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+/* final css for auth buttons */
+/* ================= SMALL AUTH BUTTONS ================= */
+
+@media(max-width:992px){
+
+  .auth-buttons{
+    gap:4px;
+    margin-right:8px;
+  }
+
+  .btn-outline,
+  .btn-primary{
+    padding:4px 9px;
+    font-size:10px;
+    border-radius:14px;
+  }
+
+}
+
+@media(max-width:480px){
+
+  .navbar{
+    padding:12px 4%;
+  }
+
+  .auth-buttons{
+    display:flex;
+    gap:4px;
+    flex-shrink:0;
+  }
+
+  .btn-outline,
+  .btn-primary{
+    padding:4px 7px;
+    font-size:10px;
+    border-radius:12px;
+    white-space:nowrap;
+  }
+
+  .menu{
+    font-size:30px;
+    margin-left:6px;
+  }
+
 }

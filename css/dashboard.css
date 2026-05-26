@@ -67,6 +67,25 @@ body {
   transform: translateX(5px);
 }
 
+
+
+.back-home {
+  width: 160px;
+  padding: 10px;
+  background: #38bdf8;
+  border: none;
+  border-radius: 8px;
+  color: black;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 5px;
+}
+
+.back-home:hover {
+  transform: scale(1.05);
+}
+
 /* MAIN */
 .main {
   flex: 1;
@@ -80,6 +99,26 @@ body {
   align-items: center;
   margin-bottom: 30px;
 }
+
+/* .back-home {
+  position: fixed;
+  top: 40px;
+  
+  right: 300px;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  background: #38bdf8;
+  color: black;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+  transition: 0.3s;
+}
+
+.back-home:hover {
+  transform: translateY(-2px);
+} */
 
 /* USER BOX */
 .user-box {
@@ -1040,3 +1079,4 @@ body {
   from { opacity: 0; transform: translateX(20px); }
   to { opacity: 1; transform: translateX(0); }
 }
+

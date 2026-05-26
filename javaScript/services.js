@@ -4,6 +4,9 @@ function goHome() {
   window.location.href = "index.html";
 }
 
+function goError() {
+  window.location.href = "error.html";
+}
 // ==========================================================
 
 function toggleDetail(element) {
