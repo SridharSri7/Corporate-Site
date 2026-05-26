@@ -6,39 +6,60 @@
 </head>
 <body>
 
-<!-- NavBar -->
+<div class="layout">
 
-<header class="navbar">
-  <div class="logo">Stackly</div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>Stackly</h2>
 
-  <nav>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="dashboard.html">Dashboard</a></li>
+    <ul>
+      <li><a href="#">Dashboard</a></li>
+      <li class="admin-only"><a href="#">Admin Panel</a></li>
+      <li class="manager-only"><a href="#">Team Reports</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
     </ul>
-  </nav>
+  </aside>
 
-  <div class="auth-buttons">
-    <a href="login.html" class="btn-outline">Login</a>
-    <a href="signup.html" class="btn-primary">Sign Up</a>
-  </div>
+  <!-- MAIN CONTENT -->
+  <main class="main">
 
-  <div class="menu" id="menuBtn">☰</div>
-</header>
+    <div class="topbar">
+      <h1>Welcome, <span id="userName">User</span> 👋</h1>
+      <p id="userRole"></p>
+    </div>
 
-<!------------------------------------- Dashboard ------------------------------------------------>
+    <!-- DASHBOARD CARDS -->
+    <div class="cards">
 
-<div class="dashboard">
-  <h1>Welcome 👋</h1>
-  <h2 id="userName"></h2>
+      <div class="card admin-only">
+        <h3>Admin Stats</h3>
+        <p>Manage users & system settings</p>
+      </div>
 
-  <button onclick="logout()">Logout</button>
+      <div class="card manager-only">
+        <h3>Team Performance</h3>
+        <p>View team analytics</p>
+      </div>
+
+      <div class="card">
+        <h3>My Tasks</h3>
+        <p>Personal dashboard overview</p>
+      </div>
+
+      <div class="card">
+        <h3>Notifications</h3>
+        <p>Latest updates and alerts</p>
+      </div>
+
+    </div>
+
+  </main>
+
 </div>
 
 <script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+
 </body>
 </html>

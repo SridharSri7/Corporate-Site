@@ -1,82 +1,70 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Arial;
   box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-/* NAVBAR */
-.navbar {
+.layout {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background: #0f172a;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 250px;
+  background: #111827;
   color: white;
+  padding: 20px;
 }
 
-.nav-links {
-  display: flex;
-  gap: 20px;
+.sidebar h2 {
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
   list-style: none;
 }
 
-.nav-links a {
-  color: white;
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: #ccc;
   text-decoration: none;
 }
 
-/* AUTH BUTTONS IN NAV */
-.auth-buttons {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-/* LOGIN BUTTON */
-.btn-outline {
-  padding: 8px 15px;
-  border: 1px solid white;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-/* SIGNUP BUTTON */
-.btn-primary {
-  padding: 8px 15px;
-  background: #2563eb;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-.btn-primary:hover {
-  background: #1d4ed8;
-}
-
-/* ====================== NavBar Completed ========================== */
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #0f172a;
+.sidebar ul li a:hover {
   color: white;
 }
 
-.dashboard {
-  text-align: center;
-  margin-top: 120px;
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 20px;
+  background: #f3f4f6;
 }
 
-.dashboard h1 {
-  font-size: 40px;
+.topbar {
+  margin-bottom: 20px;
 }
 
-button {
-  padding: 12px 20px;
-  background: #ef4444;
-  border: none;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* ROLE CONTROL */
+.admin-only,
+.manager-only {
+  display: none;
 }
