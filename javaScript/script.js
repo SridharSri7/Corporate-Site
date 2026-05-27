@@ -1,3 +1,24 @@
+
+let scrollPosition = 0;
+
+function lockScroll() {
+  scrollPosition = window.scrollY;
+
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scrollPosition}px`;
+  document.body.style.width = "100%";
+}
+
+function unlockScroll() {
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.width = "";
+
+  window.scrollTo(0, scrollPosition);
+}
+
+// ===========================================================================
+
 function clearAuthForms() {
   // SIGNUP FIELDS
   const signupFields = [
@@ -47,6 +68,7 @@ function clearAuthForms() {
 
 
 
+
 // ====================================== PASSWORD VALIDATION ======================================
 function isStrongPassword(password) {
   const minLength = password.length >= 8;
@@ -64,11 +86,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuBtn = document.getElementById("menuBtn");
   const navLinks = document.getElementById("navLinks");
 
-  if (menuBtn && navLinks) {
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
-    });
-  }
+  
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", () => {
+
+    const isOpen = navLinks.classList.toggle("show");
+
+    if (isOpen) lockScroll();
+    else unlockScroll();
+
+  });
+}
 
   document.querySelectorAll(".nav-links a").forEach(link => {
     link.addEventListener("click", () => {
@@ -318,3 +346,5 @@ function selectRole(role) {
 
   hiddenRole.value = role;
 }
+
+

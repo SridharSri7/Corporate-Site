@@ -1,6 +1,6 @@
 
+// =============================== NAVIGATION ===============================
 
-// =============================== NAVIGATION =================================
 function goHome() {
   window.location.href = "index.html";
 }
@@ -9,7 +9,8 @@ function goError() {
   window.location.href = "error.html";
 }
 
-// ==========================================================
+
+// =============================== INIT ===============================
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -18,29 +19,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.getElementById("navLinks");
 
   if (menuBtn && navLinks) {
+
     menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
+
+      const isOpen = navLinks.classList.toggle("show");
+
+      // ✅ SCROLL LOCK ADDED HERE
+      document.body.style.overflow = isOpen ? "hidden" : "auto";
+
     });
+
   }
 
+  // close menu on link click (UX FIX)
+  document.querySelectorAll(".nav-links li a").forEach(link => {
+    link.addEventListener("click", () => {
+
+      navLinks?.classList.remove("show");
+
+      // ✅ UNLOCK SCROLL WHEN MENU CLOSES
+      document.body.style.overflow = "auto";
+
+    });
+  });
+
+
   // ================= SCROLL REVEAL =================
-  const reveals = document.querySelectorAll(".reveal");
+  const revealElements = document.querySelectorAll(".reveal");
+  const valueItems = document.querySelectorAll(".value-item");
 
   const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("active");
       }
     });
-  }, {
-    threshold: 0.15
-  });
+  }, { threshold: 0.15 });
 
-  reveals.forEach((el) => revealObserver.observe(el));
+  revealElements.forEach(el => revealObserver.observe(el));
+
 
   // ================= VALUE CARDS ANIMATION =================
-  const items = document.querySelectorAll(".value-item");
-
   const valueObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
@@ -49,27 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.target.style.transition = `0.6s ease ${index * 0.1}s`;
       }
     });
-  }, {
-    threshold: 0.2
-  });
+  }, { threshold: 0.2 });
 
-  items.forEach((item) => {
+  valueItems.forEach(item => {
     item.style.opacity = "0";
     item.style.transform = "translateY(30px)";
     valueObserver.observe(item);
   });
 
-});
-
-// ================= SCROLL REVEAL (OLD) =================
-
-const reveals = document.querySelectorAll(".reveal");
-
-window.addEventListener("scroll", () => {
-  reveals.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100) {
-      el.classList.add("active");
-    }
-  });
 });

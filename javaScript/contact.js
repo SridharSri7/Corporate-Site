@@ -1,5 +1,5 @@
+// =============================== NAVIGATION ===============================
 
-// =============================== NAVIGATION =================================
 function goHome() {
   window.location.href = "index.html";
 }
@@ -9,59 +9,62 @@ function goError() {
 }
 
 
-// ================= MOBILE MENU =================
+// =============================== MOBILE MENU ===============================
 
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 
-menuBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("show");
+if (menuBtn && navLinks) {
+
+  menuBtn.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("show");
+
+    // lock background scroll when menu is open
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+  });
+
+}
+
+// close menu when clicking a link
+document.querySelectorAll(".nav-links li a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks?.classList.remove("show");
+    document.body.style.overflow = "auto";
+  });
 });
 
 
-// ================= SCROLL ANIMATION =================
+// =============================== SCROLL ANIMATION ===============================
 
 const elements = document.querySelectorAll(
   ".contact-form-container, .mini-card, .info-box, .map-box"
 );
 
+// initial state
+elements.forEach(el => {
+  el.style.opacity = "0";
+  el.style.transform = "translateY(60px)";
+  el.style.transition = "0.8s ease";
+});
+
 window.addEventListener("scroll", () => {
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
 
-  elements.forEach((element) => {
-
-    const elementTop = element.getBoundingClientRect().top;
-
-    if(elementTop < window.innerHeight - 100){
-
-      element.style.opacity = "1";
-      element.style.transform = "translateY(0px)";
-
+    if (top < window.innerHeight - 100) {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
     }
-
   });
-
 });
 
 
-// INITIAL STATE
-
-elements.forEach((element) => {
-
-  element.style.opacity = "0";
-  element.style.transform = "translateY(60px)";
-  element.style.transition = "0.8s ease";
-
-});
-
-
-// ================= HERO PARALLAX =================
+// =============================== HERO PARALLAX ===============================
 
 window.addEventListener("scroll", () => {
-
   const hero = document.querySelector(".contact-hero");
+  if (!hero) return;
 
-  let scrollPosition = window.pageYOffset;
-
+  const scrollPosition = window.pageYOffset;
   hero.style.backgroundPositionY = scrollPosition * 0.5 + "px";
-
 });

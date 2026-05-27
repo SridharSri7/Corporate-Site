@@ -1,5 +1,6 @@
 
-// =============================== NAVIGATION =================================
+// =============================== NAVIGATION ===============================
+
 function goHome() {
   window.location.href = "index.html";
 }
@@ -9,54 +10,100 @@ function goError() {
 }
 
 
-// ================= MOBILE MENU =================
+// =============================== INIT ===============================
 
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
+document.addEventListener("DOMContentLoaded", () => {
 
-menuBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("show");
-});
+  // ================= MOBILE MENU =================
+
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
+
+  // 🔒 ULTRA SCROLL LOCK (FIXES ALL BROWSERS)
+  let scrollPosition = 0;
+
+  function lockScroll() {
+    scrollPosition = window.scrollY;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.width = "100%";
+  }
+
+  function unlockScroll() {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+
+    window.scrollTo(0, scrollPosition);
+  }
+
+  if (menuBtn && navLinks) {
+
+    menuBtn.addEventListener("click", () => {
+
+      const isOpen = navLinks.classList.toggle("show");
+
+      if (isOpen) {
+        lockScroll();
+      } else {
+        unlockScroll();
+      }
+
+    });
+
+  }
+
+  // close menu on link click
+  document.querySelectorAll(".nav-links li a").forEach(link => {
+    link.addEventListener("click", () => {
+
+      navLinks?.classList.remove("show");
+      unlockScroll();
+
+    });
+  });
 
 
-// ================= SCROLL ANIMATION =================
+  // ================= SCROLL ANIMATION =================
 
-const cards = document.querySelectorAll(
-  ".project-card, .stat-box, .timeline-box, .testimonial-card"
-);
+  const cards = document.querySelectorAll(
+    ".project-card, .stat-box, .timeline-box, .testimonial-card"
+  );
 
-window.addEventListener("scroll", () => {
+  // initial state
+  cards.forEach(card => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(60px)";
+    card.style.transition = "0.8s ease";
+  });
 
-  cards.forEach((card) => {
+  window.addEventListener("scroll", () => {
 
-    const cardTop = card.getBoundingClientRect().top;
+    cards.forEach(card => {
 
-    if(cardTop < window.innerHeight - 100){
-      card.style.opacity = "1";
-      card.style.transform = "translateY(0px)";
-    }
+      const top = card.getBoundingClientRect().top;
+
+      if (top < window.innerHeight - 100) {
+        card.style.opacity = "1";
+        card.style.transform = "translateY(0)";
+      }
+
+    });
 
   });
 
-});
 
+  // ================= HERO PARALLAX =================
 
-// INITIAL STATE
-cards.forEach((card) => {
-  card.style.opacity = "0";
-  card.style.transform = "translateY(60px)";
-  card.style.transition = "0.8s ease";
-});
+  window.addEventListener("scroll", () => {
 
+    const hero = document.querySelector(".projects-hero");
+    if (!hero) return;
 
-// ================= HERO PARALLAX =================
+    const scrollPosition = window.pageYOffset;
+    hero.style.backgroundPositionY = scrollPosition * 0.5 + "px";
 
-window.addEventListener("scroll", () => {
-
-  const hero = document.querySelector(".projects-hero");
-
-  let scrollPosition = window.pageYOffset;
-
-  hero.style.backgroundPositionY = scrollPosition * 0.5 + "px";
+  });
 
 });

@@ -1,23 +1,10 @@
 // =============================== NAVIGATION =================================
 
 function goHome() {
-
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  // If not logged in
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
-
-  // ROLE BASED DASHBOARD SWITCH
-  if (user.role === "admin") {
-    showPage("adminPage");   // must match your HTML section id
-  } else {
-    showPage("homePage");    // must match your HTML section id
-  }
-
+  location.reload();
 }
+
+// =============================== ERROR PAGE REDIRECT =============================
 
 function goError() {
   window.location.href = "error.html";
