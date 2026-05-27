@@ -18,7 +18,7 @@
 </div>
 
 
-  <!-- <ul>
+  <ul>
     <li onclick="showPage('homePage')">Dashboard</li>
     <li onclick="showPage('profilePage')">Profile</li>
     <li onclick="showPage('tasksPage')">My Tasks</li>
@@ -30,10 +30,10 @@
 
     <li onclick="showPage('settingsPage')">Settings</li>
     <li onclick="logout()">Logout</li>
-  </ul> -->
+  </ul>
 
   <!-- =========================== RUFUSE ============================ -->
-   <ul>
+   <!-- <ul>
     <li onclick="showPage('homePage')">Dashboard</li>
     <li onclick="goBoardError()">Profile</li>
     <li onclick="goBoardError()">My Tasks</li>
@@ -43,9 +43,9 @@
       Admin Panel
     </li>
 
-    <li onclick="goError()">Settings</li>
+    <li onclick="goBoardError()">Settings</li>
     <li onclick="logout()">Logout</li>
-  </ul>
+  </ul> -->
 
   <button class="back-home" onclick="window.location.href='index.html'">
     ← Back to Home
@@ -298,7 +298,7 @@
 
     <input type="text" id="taskTags" placeholder="Tags (e.g. UI, API, Bug)">
 
-    <button onclick="addTask()">Add Task</button>
+    <button onclick="goBoardError()">Add Task</button>
 
   </div>
 
@@ -343,18 +343,18 @@
 
     <div class="notif-meta">
       <span id="notifCount" class="badge">0</span>
-      <button onclick="markAllRead()">Mark All Read</button>
-      <button onclick="clearNotifications()">Clear</button>
+      <button onclick="goBoardError()">Mark All Read</button>
+      <button onclick="goBoardError()">Clear</button>
     </div>
   </div>
 
   <!-- FILTERS -->
   <div class="notif-filters">
-    <button onclick="filterNotif('all')">All</button>
-    <button onclick="filterNotif('system')">System</button>
-    <button onclick="filterNotif('user')">User</button>
-    <button onclick="filterNotif('security')">Security</button>
-    <button onclick="filterNotif('payment')">Payments</button>
+    <button onclick="goBoardError()">All</button>
+    <button onclick="goBoardError()">System</button>
+    <button onclick="goBoardError()">User</button>
+    <button onclick="goBoardError()">Security</button>
+    <button onclick="goBoardError()">Payments</button>
   </div>
 
   <!-- LIST -->
@@ -417,14 +417,14 @@
           <span>John</span>
           <span>john@mail.com</span>
           <span>User</span>
-          <button onclick="banUser(this)">Ban</button>
+          <button onclick="goBoardError()">Ban</button>
         </div>
 
         <div class="row">
           <span>Sara</span>
           <span>sara@mail.com</span>
           <span>User</span>
-          <button onclick="promoteUser(this)">Promote</button>
+          <button onclick="goBoardError()">Promote</button>
         </div>
 
       </div>
@@ -461,11 +461,11 @@
     <!-- SIDEBAR TABS -->
     <div class="settings-side animate">
 
-      <button class="tab active" onclick="openSettings('profile')">👤 Profile</button>
-      <button class="tab" onclick="openSettings('security')">🔒 Security</button>
-      <button class="tab" onclick="openSettings('preferences')">🎛 Preferences</button>
-      <button class="tab" onclick="openSettings('notifications')">🔔 Notifications</button>
-      <button class="tab danger" onclick="openSettings('danger')">⚠ Danger Zone</button>
+      <button class="tab active" onclick="goBoardError()">👤 Profile</button>
+      <button class="tab" onclick="goBoardError()">🔒 Security</button>
+      <button class="tab" onclick="goBoardError()">🎛 Preferences</button>
+      <button class="tab" onclick="goBoardError()">🔔 Notifications</button>
+      <button class="tab danger" onclick="goBoardError()">⚠ Danger Zone</button>
 
     </div>
 
@@ -604,7 +604,7 @@
           <input type="password" id="oldPass" placeholder="Current Password">
           <input type="password" id="newPass" placeholder="New Password">
 
-          <button class="primary-btn" onclick="changePassword()">Update Password</button>
+          <button class="primary-btn" onclick="goBoardError()">Update Password</button>
 
         </div>
 
@@ -666,7 +666,7 @@
         <p>This action is irreversible. Proceed with caution.</p>
 
         <button class="danger-btn" onclick="logout()">Logout</button>
-        <button class="danger-btn" onclick="deleteAccount()">Delete Account</button>
+        <button class="danger-btn" onclick="goBoardError()">Delete Account</button>
 
       </div>
 
