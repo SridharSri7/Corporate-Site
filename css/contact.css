@@ -135,7 +135,7 @@ body{
 .contact-hero{
   width:100%;
   min-height:100vh;
-  background:url('assets/Contact-Header2.webp');
+  background:url('/assets/inner/contact.webp');
   background-size:cover;
   background-position:center;
   position:relative;
@@ -377,6 +377,8 @@ body{
   border:none;
   border-radius:25px;
 }
+
+
 
 /* ================= CTA ================= */
 
