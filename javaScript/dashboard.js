@@ -10,6 +10,10 @@ function goError() {
   window.location.href = "error.html";
 }
 
+function goBoardError() {
+  window.location.href = "dashBoardError.html";
+}
+
 // ================= MASTER BOOTSTRAP =================
 document.addEventListener("DOMContentLoaded", () => {
 

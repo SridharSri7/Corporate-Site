@@ -67,8 +67,6 @@ function clearAuthForms() {
 }
 
 
-
-
 // ====================================== PASSWORD VALIDATION ======================================
 function isStrongPassword(password) {
   const minLength = password.length >= 8;
