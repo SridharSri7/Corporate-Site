@@ -9,7 +9,6 @@ function goError() {
   window.location.href = "error.html";
 }
 
-
 // =============================== INIT ===============================
 
 document.addEventListener("DOMContentLoaded", () => {

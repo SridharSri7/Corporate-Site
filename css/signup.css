@@ -203,6 +203,7 @@ select option{
     height:auto;
     flex-direction:column;
   }
+  
 
   .auth-left{
     display:none;
