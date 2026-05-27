@@ -1,7 +1,22 @@
 // =============================== NAVIGATION =================================
 
 function goHome() {
-  window.location.href = "index.html";
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  // If not logged in
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  // ROLE BASED DASHBOARD SWITCH
+  if (user.role === "admin") {
+    showPage("adminPage");   // must match your HTML section id
+  } else {
+    showPage("homePage");    // must match your HTML section id
+  }
+
 }
 
 function goError() {
@@ -424,8 +439,28 @@ const App = {
 
 // ================= GLOBAL FUNCTIONS =================
 function showPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+
+  document.querySelectorAll(".page")
+    .forEach(p => p.classList.remove("active"));
+
   document.getElementById(id)?.classList.add("active");
+
+  // PAGE TITLE
+  const titles = {
+    homePage: "Dashboard",
+    profilePage: "Profile",
+    tasksPage: "Tasks",
+    notifyPage: "Notifications",
+    adminPage: "Admin Panel",
+    settingsPage: "Settings"
+  };
+
+  const title = document.getElementById("pageTitle");
+
+  if(title){
+    title.innerText = titles[id] || "Dashboard";
+  }
+
 }
 
 function logout() {
