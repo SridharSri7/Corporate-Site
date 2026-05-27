@@ -39,6 +39,27 @@ body{
   transform: scale(1.05);
 }
 
+.footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 20px 10px;
+  padding-left: 0;
+  cursor: pointer;
+  
+}
+
+.footer-logo img {
+  width: 230px;      /* adjust size */
+  height: auto;
+  object-fit: contain;
+  transition: 0.3s ease;
+}
+
+.footer-logo img:hover {
+  transform: scale(1.05);
+}
+
 /* ================= SCROLLBAR ================= */
 
 ::-webkit-scrollbar{
@@ -1622,3 +1643,4 @@ body{
   }
 
 }
+

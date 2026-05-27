@@ -283,13 +283,19 @@ function logout() {
 }
 
 
-// ================= FORGOT PASSWORD  & ERROR PAGE =================
+// ================= FORGOT PASSWORD  & ERROR PAGE & HOME PAGE =================
+// =============================== NAVIGATION =================================
+
 function forgotPassword() {
   window.location.href = "error.html";
 }
 
 function goError() {
   window.location.href = "error.html";
+}
+
+function goHome() {
+  window.location.href = "index.html";
 }
 
 

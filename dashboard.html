@@ -17,7 +17,8 @@
   <img src="assets/logo-stackly (1).webp" alt="Company Logo">
 </div>
 
-  <ul>
+
+  <!-- <ul>
     <li onclick="showPage('homePage')">Dashboard</li>
     <li onclick="showPage('profilePage')">Profile</li>
     <li onclick="showPage('tasksPage')">My Tasks</li>
@@ -28,6 +29,21 @@
     </li>
 
     <li onclick="showPage('settingsPage')">Settings</li>
+    <li onclick="logout()">Logout</li>
+  </ul> -->
+
+  <!-- =========================== RUFUSE ============================ -->
+   <ul>
+    <li onclick="showPage('homePage')">Dashboard</li>
+    <li onclick="goError()">Profile</li>
+    <li onclick="goError()">My Tasks</li>
+    <li onclick="goError()">Notifications</li>
+
+    <li class="admin-only" onclick="goError()">
+      Admin Panel
+    </li>
+
+    <li onclick="goError()">Settings</li>
     <li onclick="logout()">Logout</li>
   </ul>
 

@@ -1,5 +1,11 @@
+// =============================== NAVIGATION =================================
+
 function goHome() {
   window.location.href = "index.html";
+}
+
+function goError() {
+  window.location.href = "error.html";
 }
 
 // ================= MASTER BOOTSTRAP =================
